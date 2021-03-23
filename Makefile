@@ -2,7 +2,7 @@ no-command:
 	@echo Usage: make [scenario]
 
 
-# Запускаем веб-сервер на порт 8500, который раздаёт статический контент из папки /progress-page
+# Запускаем веб-сервер на порт 8500, который раздаёт статический контент из папки /docs
 raw-server:
 	node ./node-server/server.js
 
@@ -16,6 +16,6 @@ server:
 browser:
 	browser-sync start \
 		--proxy "http://localhost:8500/" \
-		--files "./progress-page/js/*.js" \
-		--files "./progress-page/css/*.css" \
-		--files "./progress-page/index.html"
+		--files "./docs/js/*.js" \
+		--files "./docs/css/*.css" \
+		--files "./docs/index.html"

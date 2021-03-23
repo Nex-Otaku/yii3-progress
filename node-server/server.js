@@ -4,7 +4,7 @@ const nStatic = require('node-static');
 
 // Запуск должен производиться из корня проекта, чтобы Node.js правильно подхватил путь.
 // node .\node-server\server.js
-const fileServer = new nStatic.Server('progress-page');
+const fileServer = new nStatic.Server('docs');
 
 http.createServer(function (request, response) {
     request.addListener('end', function () {
