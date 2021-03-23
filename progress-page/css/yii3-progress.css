@@ -1,0 +1,25 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.half-life-yii {
+    margin-top: 60px;
+}
+
+body {
+    background-color: #fff !important;
+}
+
+.footer-links-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.source-code-link {
+    text-align: center;
+}
