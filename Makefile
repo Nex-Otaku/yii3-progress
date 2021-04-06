@@ -19,3 +19,6 @@ browser:
 		--files "./docs/js/*.js" \
 		--files "./docs/css/*.css" \
 		--files "./docs/index.html"
+
+stats:
+	node ./get-stats.js
