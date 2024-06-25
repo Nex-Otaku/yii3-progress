@@ -25,7 +25,6 @@ got(url).then(response => {
     const trs = dom.window.document.querySelectorAll('#w0 > table > tbody > tr');
     const totalPackageCount = trs.length;
     let stablePackageCount = 0;
-
     for (let i = 0; i < trs.length; i++) {
         const tr = trs[i];
         const name = tr.querySelectorAll('td').item(0).querySelector('a').textContent;

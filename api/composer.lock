@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "92a6981db3e66e6097fa99feff9b7183",
+    "packages": [
+        {
+            "name": "nex-otaku/minimal-filesystem",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nex-Otaku/minimal-filesystem.git",
+                "reference": "1b4f8afe248ceaf0e3a2791e583ae80d4d85c2b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nex-Otaku/minimal-filesystem/zipball/1b4f8afe248ceaf0e3a2791e583ae80d4d85c2b3",
+                "reference": "1b4f8afe248ceaf0e3a2791e583ae80d4d85c2b3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NexOtaku\\MinimalFilesystem\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Minimal Filesystem",
+            "keywords": [
+                "directory",
+                "file",
+                "filesystem",
+                "fs",
+                "path"
+            ],
+            "support": {
+                "issues": "https://github.com/nex-otaku/minimal-filesystem/issues",
+                "source": "https://github.com/nex-otaku/minimal-filesystem"
+            },
+            "time": "2021-06-11T16:45:29+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

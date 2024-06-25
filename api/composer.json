@@ -1,0 +1,11 @@
+{
+    "name": "bogdante/api",
+    "autoload": {
+        "psr-4": {
+            "Bogdante\\Api\\": "src/"
+        }
+    },
+    "require": {
+        "nex-otaku/minimal-filesystem": "^2.0"
+    }
+}
