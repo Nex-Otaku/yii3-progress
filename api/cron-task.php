@@ -55,6 +55,8 @@
             $response['totalPackages'] = $totalPackCount;
             $response['stablePackages'] = $stablePackageCount;
             $response['progress'] = $progress;
+
+            date_default_timezone_set('Europe/Moscow');
             $response['updatedAt'] = date('d.m.Y H:i:s');
 
         } else {
