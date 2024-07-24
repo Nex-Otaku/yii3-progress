@@ -55,6 +55,7 @@
             $response['totalPackages'] = $totalPackCount;
             $response['stablePackages'] = $stablePackageCount;
             $response['progress'] = $progress;
+            $response['updatedAt'] = date('d.m.Y H:i:s');
 
         } else {
             $response["error"] = "Can't find the table!";

@@ -18,12 +18,14 @@
                     let totalPackages = document.querySelector("#total-packages");
                     let progress = document.querySelector("#progress");
                     let progressBar = document.querySelector(".progress");
-                    
-                    if(packReleased && totalPackages && progress && progressBar) {
+                    let updatedAtLabel = document.querySelector("#updated-date");
+
+                    if (packReleased && totalPackages && progress && progressBar) {
                         packReleased.textContent = data.stablePackages;
                         totalPackages.textContent = data.totalPackages;
                         progress.textContent = data.progress + "%";
                         progressBar.style.width = `calc(${data.progress}% - 40px)`;
+                        updatedAtLabel.textContent = data.updatedAt;
                     } else {
                         console.log('Error finding DOM Elements ...');
                     }
@@ -74,7 +76,7 @@
             <p><a href="https://github.com/Nex-Otaku/yii3-progress">Исходный код на GitHub <span style="font-size: 30px">👀</span></a></p>
         </div>
         <div class="source-code-link">
-            <p>Обновлено: <span class="updated-date">18.04.2023</span></p>
+            <p>Обновлено: <span id="updated-date" class="updated-date">18.04.2023</span></p>
         </div>
     </div>
 </section>
