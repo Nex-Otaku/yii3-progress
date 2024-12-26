@@ -3,11 +3,8 @@
     
     use NexOtaku\MinimalFilesystem\Filesystem;
 
-    $url = "https://www.yiiframework.com/status/3.0";
-    $html = file_get_contents($url);
-
     function isStableVersion($version) {
-        if($version == "") {
+        if ($version === '') {
             return false;
         }
 
@@ -18,52 +15,74 @@
         return $firstVersionNumber >= 1;
     }
 
-    $response = [];
+    function getResponse()
+    {
+        $url = "https://www.yiiframework.com/status/3.0";
+        $html = file_get_contents($url);
 
-    if ($html === FALSE) {
-        echo "Error retrieving the URL.";
-        $response["error"] = "Can't obtain URL-address!";
-    } else {
+        $response = [];
+
+        if ($html === FALSE) {
+            echo "Error retrieving the URL.";
+            $response["error"] = "Can't obtain URL-address!";
+
+            return $response;
+        }
+
         $dom = new DOMDocument();
         libxml_use_internal_errors(true);
-        $dom->loadHTML($html); 
-        
+        $dom->loadHTML($html);
+
         $xpath = new DOMXPath($dom);
         $table = $xpath->query("//*[@id='w0']/table/tbody")->item(0);
 
         $stablePackageCount = 0;
 
-        if($table) {
-            $rows = $xpath->query(".//tr", $table);
-            $totalPackCount = $rows->length;
+        if (!$table) {
+            $response["error"] = "Can't find the table!";
 
-            if($rows->length > 0) {
-                foreach($rows as $row) {
-                    $cells = $xpath->query(".//td", $row);
-                    $latestVersion = $cells->item(2)->textContent;
-                    $isStable = isStableVersion($latestVersion);
-                    if($isStable) {
-                        $stablePackageCount++;
-                    }
-                }
-            } else {
-                $response["error"] = "Zero row length!";
+            return $response;
+        }
+
+        $rows = $xpath->query(".//tr", $table);
+        $totalPackCount = 0;
+
+        if ($rows->length <= 0) {
+            $response["error"] = "Zero row length!";
+
+            return $response;
+        }
+
+        foreach($rows as $row) {
+            $cells = $xpath->query(".//td", $row);
+            $isOptional = $cells->item(11)->textContent === 'Yes';
+
+            if ($isOptional) {
+                continue;
             }
 
-            $progress = floor((100 *  $stablePackageCount) / $totalPackCount);
-            
-            $response['totalPackages'] = $totalPackCount;
-            $response['stablePackages'] = $stablePackageCount;
-            $response['progress'] = $progress;
+            $totalPackCount++;
+            $latestVersion = $cells->item(2)->textContent;
+            $isStable = isStableVersion($latestVersion);
 
-            date_default_timezone_set('Europe/Moscow');
-            $response['updatedAt'] = date('d.m.Y H:i:s');
-
-        } else {
-            $response["error"] = "Can't find the table!";
+            if ($isStable) {
+                $stablePackageCount++;
+            }
         }
-        
+
+        $progress = floor((100 *  $stablePackageCount) / $totalPackCount);
+
+        $response['totalPackages'] = $totalPackCount;
+        $response['stablePackages'] = $stablePackageCount;
+        $response['progress'] = $progress;
+
+        date_default_timezone_set('Europe/Moscow');
+        $response['updatedAt'] = date('d.m.Y H:i:s');
+
+        return $response;
     }
+
+    $response = getResponse();
 
     $fs = new Filesystem();
     $filePath = __DIR__ . '/../docs/data.js';
